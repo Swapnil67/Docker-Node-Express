@@ -1,0 +1,8 @@
+version: '3'
+services:
+  docker-node-app:
+  volumes:
+    - /app/node_modules
+  environment:
+    - NODE_ENV=productions
+  command: node index.js
