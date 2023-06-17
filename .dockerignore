@@ -1,5 +1,18 @@
-node_modules
+# ignore .git and .cache folders
+.git
+.cache
+
+# ignore all markdown files (md) beside all README*.md other than README-secret.md
+*.md
+!README*.md
+README-secret.md
+
+# ignore all yml files
+*.yml
+
+# ignore the node_modules folder
+node_modules/
+
+# ignore the Dockerfile & .dockerignore
 Dockerfile
 .dockerignore
-.git
-.gitignore

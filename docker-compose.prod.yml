@@ -1,6 +1,10 @@
 version: '3'
 services:
   docker-node-app:
+    build:
+      context: . # Path to Dockerfile
+      args:
+        - NODE_ENV=production
     volumes:
       - /app/node_modules
     environment:
