@@ -10,5 +10,15 @@ services:
       - /app/node_modules # anonymous volume
     environment:
       - NODE_ENV=development
+      - MONGO_USER=swapnil
+      - MONGO_HOST=mongo
+      - MONGO_PASSWORD=Swapnil@67
+
     command: npm run dev
+  
+  mongo:
+    image: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=swapnil
+      - MONGO_INITDB_ROOT_PASSWORD=Swapnil@67
       
