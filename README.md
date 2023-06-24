@@ -5,9 +5,9 @@ $ docker build -t nodeappv1.0.0 .
 
 
 # Build the container using following command
-$ docker container -d -p 3000:3000 --name docker-node-app -v $(pwd):/[APP_PATH_IN_DOCKER] [IMAGE_NAME|IMAGE_ID]
+$ docker container run -d -p 3000:4000 --name docker-node-app -v $(pwd):/[APP_PATH_IN_DOCKER] [IMAGE_NAME|IMAGE_ID]
 Ex:
-$ docker container -d -p 3000:3000 --name docker-node-app -v $(pwd):/app nodeappv1.0.0
+$ docker container run -d -p 3000:4000 --name docker-node-app -v $(pwd):/app nodeappv1.0.0
 
 # To prevent deleting the node_modules inside the container use the following volume
 -v /[APP_PATH_IN_DOCKER]/node_modules
@@ -16,9 +16,9 @@ Ex:
 
 
 # Build a read only docker container using following command
-$ docker container -d -p 3000:3000 --name docker-node-app -v $(pwd):/[APP_PATH_IN_DOCKER]:ro -v /[APP_PATH_IN_DOCKER]/node_modules [IMAGE_NAME|IMAGE_ID]
+$ docker container run -d -p 3000:4000 --name docker-node-app -v $(pwd):/[APP_PATH_IN_DOCKER]:ro -v /[APP_PATH_IN_DOCKER]/node_modules [IMAGE_NAME|IMAGE_ID]
 Ex:
-$ docker container -d -p 3000:3000 --name docker-node-app -v $(pwd):/app:ro -v /app/node_modules [IMAGE_NAME|IMAGE_ID]
+$ docker container run -d -p 3000:4000 --name docker-node-app -v $(pwd):/app:ro -v /app/node_modules [IMAGE_NAME|IMAGE_ID]
 
 
 # Pass the env file running the container (--en-file conmmand)
@@ -37,6 +37,9 @@ $ docker-compose -f  docker-compose.yml -f docker-compose.dev.yml up -d
 $ docker-compose -f  docker-compose.yml -f docker-compose.dev.yml down -v
 
 -v: for removing the volumes
+
+# Rebuild the image and then start the container use following command
+$ docker-compose -f  docker-compose.yml -f docker-compose.dev.yml up --build -d
 
 
 For Production Mode

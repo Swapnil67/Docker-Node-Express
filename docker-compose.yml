@@ -11,3 +11,9 @@ services:
     #   - PORT=3000
     env_file:
       - ./.env
+  
+  mongo:
+    image: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=swapnil
+      - MONGO_INITDB_ROOT_PASSWORD=Swapnil@67
