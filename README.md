@@ -51,3 +51,7 @@ $ docker-compose -f  docker-compose.yml -f docker-compose.prod.yml down -v
 
 # Rebuild the image and then start the container use following command
 $ docker-compose -f  docker-compose.yml -f docker-compose.prod.yml up --build -d
+
+
+# Adding Named volumes 
+- After adding named volumes you should never use -v flag when stopping the containers it will also remove the named volumes.

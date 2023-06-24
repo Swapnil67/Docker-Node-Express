@@ -5,8 +5,8 @@ services:
     ports:
       - "3000:4000"
     volumes:
-      - ./:/app
-      - /app/node_modules
+      - ./:/app # Bind mount
+      - /app/node_modules # anonymous volume
     # environment:
     #   - PORT=3000
     env_file:
@@ -17,3 +17,7 @@ services:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=swapnil
       - MONGO_INITDB_ROOT_PASSWORD=Swapnil@67
+    volumes:
+      - mongo-db:/data/db # Named Volume
+volumes:
+  mongo-db:
