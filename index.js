@@ -24,6 +24,7 @@ async function main() {
             .catch((err) => console.log("Error in connection: ", err))
 }
 
+app.enable('trust proxy');
 app.use(sessionMiddleware);
 app.use(express.json());
 
