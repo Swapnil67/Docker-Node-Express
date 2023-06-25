@@ -17,15 +17,15 @@ const MONGO_URL = `mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_HOST}:${MON
 
 main().catch(err => console.log(err));
 
-async function main() {j
+async function main() {
   // console.log(MONGO_URL);
   await mongoose.connect (MONGO_URL)
             .then(() => console.log("Successfully connected to DB"))
             .catch((err) => console.log("Error in connection: ", err))
 }
 
-app.use(express.json());
 app.use(sessionMiddleware);
+app.use(express.json());
 
 app.get("/", (req, res) => {
   res.send("Yoo Node App!!!");
