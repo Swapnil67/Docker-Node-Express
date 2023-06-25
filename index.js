@@ -1,6 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 
+const postRouter = require("./routes/routes");
+
 const app = express();
 
 const { MONGO_USER, MONGO_HOST, MONGO_PORT, MONGO_PASSWORD: mongo_pass } = require("./config/config");
@@ -17,14 +19,15 @@ async function main() {
 }
 
 
+app.use(express.json());
+
 app.get("/", (req, res) => {
   res.send("Yoo Node App!!!");
 })
+
+app.use("/posts", postRouter);
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   console.log("App running on port ", PORT);
 })
-
-// mongodb://swapnil:Swapnil%4067@mongo:27017/?authSource=admin
-// mongodb://swapnil:Swapnil%254067@mongo:27017/?authSource=admin
