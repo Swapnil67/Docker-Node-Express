@@ -13,6 +13,7 @@ services:
       - MONGO_USER=swapnil
       - MONGO_HOST=mongo
       - MONGO_PASSWORD=Swapnil@67
+      - SESSION_SECRET=secret
 
     command: npm run dev
   
@@ -21,4 +22,3 @@ services:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=swapnil
       - MONGO_INITDB_ROOT_PASSWORD=Swapnil@67
-      

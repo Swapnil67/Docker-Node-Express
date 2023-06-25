@@ -55,3 +55,14 @@ $ docker-compose -f  docker-compose.yml -f docker-compose.prod.yml up --build -d
 
 # Adding Named volumes 
 - After adding named volumes you should never use -v flag when stopping the containers it will also remove the named volumes.
+
+# Whenever we install a new npm package we need to rebuild the image
+- so first we use docker compose down
+- then we use docker compose up --build 
+- Now we can do both these in a single command below
+- docker compose -f docker-compose.yml -f docker-compose.dev.yml up 
+    -d --build -V
+
+Here -V will Recreate anonymous volumes instead of retrieving data from the
+previous containers.
+

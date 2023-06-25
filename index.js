@@ -1,33 +1,41 @@
+const redis = require("ioredis");
 const express = require("express");
 const mongoose = require("mongoose");
 
+const { MONGO_USER, MONGO_HOST, MONGO_PORT, MONGO_PASSWORD: mongo_pass, REDIS_HOST, REDIS_PORT, SESSION_SECRET } = require("./config/config");
+
 const postRouter = require("./routes/routes");
+const userRouter = require("./routes/userRoutes");
+
+require("./db/redis_conn");
+const sessionMiddleware = require("./middlewares/session");
 
 const app = express();
 
-const { MONGO_USER, MONGO_HOST, MONGO_PORT, MONGO_PASSWORD: mongo_pass } = require("./config/config");
 const MONGO_PASSWORD = encodeURIComponent(mongo_pass);
 const MONGO_URL = `mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_HOST}:${MONGO_PORT}/?authSource=admin`;
 
 main().catch(err => console.log(err));
 
-async function main() {
+async function main() {j
   // console.log(MONGO_URL);
   await mongoose.connect (MONGO_URL)
             .then(() => console.log("Successfully connected to DB"))
             .catch((err) => console.log("Error in connection: ", err))
 }
 
-
 app.use(express.json());
+app.use(sessionMiddleware);
 
 app.get("/", (req, res) => {
   res.send("Yoo Node App!!!");
 })
 
 app.use("/posts", postRouter);
+app.use("/user", userRouter);
 
 const PORT = process.env.PORT || 4000;
+
 app.listen(PORT, () => {
   console.log("App running on port ", PORT);
-})
+});

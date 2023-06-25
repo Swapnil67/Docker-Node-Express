@@ -21,5 +21,9 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=Swapnil@67
     volumes:
       - mongo-db:/data/db # Named Volume
+
+  redis:
+    image: redis
+
 volumes:
   mongo-db:
