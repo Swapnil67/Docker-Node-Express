@@ -1,6 +1,6 @@
-const redis = require("ioredis");
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 
 const { MONGO_USER, MONGO_HOST, MONGO_PORT, MONGO_PASSWORD: mongo_pass, REDIS_HOST, REDIS_PORT, SESSION_SECRET } = require("./config/config");
 
@@ -25,11 +25,13 @@ async function main() {
 }
 
 app.enable('trust proxy');
+app.use(cors({}));
 app.use(sessionMiddleware);
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.send("Yoo Node App!!!");
+  console.log("Load Balancing Working");
+  return res.send("Yoo Node App!!!");
 })
 
 app.use("/posts", postRouter);
@@ -40,3 +42,4 @@ const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   console.log("App running on port ", PORT);
 });
+
